@@ -49,7 +49,7 @@ Web開発演習
   - プレゼンテーション層
     - ViewModel
     - DIコンテナ
-    - Middleware
+    - MiddleWare
   - 社員一覧表示機能
   - 部門一覧表示機能
   
