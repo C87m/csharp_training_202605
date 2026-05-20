@@ -83,3 +83,7 @@ Web開発演習
 
 ### 5/29
 - 成果発表
+
+## DB
+![テーブル](docs/01_db/DBimage.png)
+![ER図](docs/01_db/ERimage.png)
