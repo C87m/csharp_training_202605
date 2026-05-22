@@ -1,4 +1,4 @@
-namespace WebApp_Exercise_Answer.Exceptions;
+namespace src.Exceptions;
 /// <summary>
 /// 内部エラーを表す例外クラス
 /// データベース停止や不正なデータアクセスなど

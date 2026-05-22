@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace WebApp_Sample.Infrastructures.Entities;
+namespace src.Infrastructures.Entities;
 /// <summary>
 /// 従業員テーブル(employee)を扱うEntity Framework Coreのエンティティクラス
 /// </summary>
@@ -27,7 +27,7 @@ public class EmployeeEntity
     /// 生年月日
     /// </summary>
     [Column("birthday")]
-    public DateTime Birthday { get; set; } = string.Empty;
+    public string? Birthday { get; set; }
     /// <summary>
     /// 性別
     /// </summary>
@@ -52,5 +52,5 @@ public class EmployeeEntity
     /// 削除フラグ
     /// </summary>
     [Column("deleteFlag")]
-    public string DeleteFlag { get; set; } = string.Empty;
+    public bool DeleteFlag { get; set; } = false;
 }

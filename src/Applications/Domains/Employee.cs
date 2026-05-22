@@ -9,7 +9,7 @@ public class Employee
     public int? Id { get; private set; } // 社員Id
     public string Name { get; private set; } = string.Empty; // 氏名
     public Department Department { get; private set; } // 所属部署
-    public DateTime Birthday { get; private set; }
+    public string Birthday { get; private set; }
     public string Gender { get; private set; }
     public string PhoneNumber { get; private set;}
     public string Email {get; private set;}
@@ -37,7 +37,7 @@ public class Employee
         Id = id;
         Name = name;
         Department = department;
-        Birthday = DateTime.ParseExact(birthday, "yyyymmdd", null);
+        Birthday = birthday;
         Gender = gender;
         PhoneNumber = phoneNumber;
         Email = email;
@@ -50,8 +50,8 @@ public class Employee
     /// </summary>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
-    public Employee(string name, Department department, string birthday, string gender, string phoneNumber, string email, string address, bool deleteflag)
-        : this(null, name, department, birthday, birthday, gender, phoneNumber, email, address) { }
+    public Employee(string name, Department department, string birthday, string gender, string phoneNumber, string email, string address, bool deleteFlag=false)
+        : this(null, name, department, birthday, gender, phoneNumber, email, address, deleteFlag) { }
 
     /// <summary>
     /// 氏名の検証
@@ -71,10 +71,11 @@ public class Employee
         if (string.IsNullOrWhiteSpace(birthday)){
             throw new DomainException("生年月日は必須です");
         }
-        if (DateTime.TryParseExact(birthday,"yyyymmdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result))
+        if (birthday.All(char.IsDigit)) // 日付型には後でします
         {
-            throw new DomainException("生年月日が不正です");
+            throw new DomainException("電話番号が不正です");
         }
+        
     }
     /// <summary>
     /// 電話番号の検証
@@ -85,11 +86,11 @@ public class Employee
         {
             throw new DomainException("電話番号は必須です");
         }
-        if (phoneNumber.All(string.IsDigit))
+        if (phoneNumber.All(char.IsDigit))
         {
             throw new DomainException("電話番号が不正です");
         }
-        if (name.Length > PhoneNumberMaxLength)
+        if (phoneNumber.Length > PhoneNumberMaxLength)
         {
             throw new DomainException($"電話番号が不正です");
         }

@@ -1,6 +1,6 @@
-using WebApp_Sample.Applications.Adapters;
-using WebApp_Sample.Applications.Domains;
-namespace WebApp_Sample.Presentations.ViewModels;
+using src.Applications.Adapters;
+using src.Applications.Domains;
+namespace src.Presentations.ViewModels;
 /// <summary>
 /// EmployeeRegisterViewModel(従業員登録ViewModel)を
 /// ドメインオブジェクト:Employeeに変換するアダプターインターフェイスの実装
@@ -19,7 +19,15 @@ public class EmployeeRegisterViewModelAdapter : IRestorer<Employee, EmployeeRegi
         // Department(部署)を作成する
         var department = new Department(target.DeptId!.Value,target.DeptName);
         // 登録するEmployee(従業員)を作成する
-        var employee = new Employee(target.Name!, department);
+        var employee = new Employee(
+            target.Name!, 
+            department, 
+            target.Birthday,
+            target.Gender,
+            target.PhoneNumber,
+            target.Email,
+            target.Address,
+            target.DeleteFlag);
         return employee;
     }
 }

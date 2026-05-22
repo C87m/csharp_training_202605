@@ -27,6 +27,46 @@ public class EmployeeRegisterViewModel
     public string? DeptName { get; set; } = string.Empty;
 
     /// <summary>
+    /// 生年月日
+    /// </summary>
+    [Display(Name = "生年月日(YYYYNNDD)")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    public string? Birthday { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 性別
+    /// </summary>
+    [Display(Name = "性別")]
+    public string? Gender { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 電話番号
+    /// </summary>
+    [Display(Name = "電話番号")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    public string? PhoneNumber { get; set; } = string.Empty;
+
+    /// <summary>
+    /// メールアドレス
+    /// </summary>
+    [Display(Name = "メールアドレス")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    public string? Email { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 住所
+    /// </summary>
+    [Display(Name = "住所")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    public string? Address { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 削除フラグ
+    /// </summary>
+    [Display(Name = "削除フラグ")]
+    public bool DeleteFlag { get; set; } = false;
+
+    /// <summary>
     /// 部署のリストをSelectListItemのリストに変換してプロパティに設定する
     /// </summary>
     /// <param name="departments"></param>
