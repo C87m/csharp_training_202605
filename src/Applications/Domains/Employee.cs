@@ -1,4 +1,5 @@
 using src.Exceptions;
+using System.Linq;
 namespace src.Applications.Domains;
 /// <summary>
 /// 従業員を表すドメインオブジェクト
@@ -8,7 +9,7 @@ public class Employee
     public int? Id { get; private set; } // 社員Id
     public string Name { get; private set; } = string.Empty; // 氏名
     public Department Department { get; private set; } // 所属部署
-    public string Birthday { get; private set; }
+    public DateTime Birthday { get; private set; }
     public string Gender { get; private set; }
     public string PhoneNumber { get; private set;}
     public string Email {get; private set;}
@@ -16,7 +17,7 @@ public class Employee
     public bool DeleteFlag {get; private set;}
 
     private const int EmpNameMaxLength = 10;
-    private const int PhoneNumberMaxLength = 20;
+    private const int PhoneNumberMaxLength = 11;
     private const int EmailMaxLength = 100;
     private const int AddressMaxLength = 100;
 
@@ -26,17 +27,22 @@ public class Employee
     /// <param name="id">社員Id</param>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
-    public Employee(int? id, string name, Department department, string birthday, string gender, string phoneNumber, string email, string address, bool deleteflag){
+    public Employee(int? id, string name, Department department, string birthday, string gender, string phoneNumber, string email, string address, bool deleteFlag = false){
         ValidateName(name);
+        ValidateBirthday(birthday);
+        ValidatePhoneNumber(phoneNumber);
+        ValidateEmail(email);
+        ValidateAddress(address);
+
         Id = id;
         Name = name;
         Department = department;
-        Birthday = birthday;
+        Birthday = DateTime.ParseExact(birthday, "yyyymmdd", null);
         Gender = gender;
         PhoneNumber = phoneNumber;
         Email = email;
         Address = address;
-        DeleteFlag = deleteflag;
+        DeleteFlag = deleteFlag;
     }
 
     /// <summary>
@@ -44,8 +50,8 @@ public class Employee
     /// </summary>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
-    public Employee(string name, Department department)
-        : this(null, name, department) { }
+    public Employee(string name, Department department, string birthday, string gender, string phoneNumber, string email, string address, bool deleteflag)
+        : this(null, name, department, birthday, birthday, gender, phoneNumber, email, address) { }
 
     /// <summary>
     /// 氏名の検証
@@ -53,12 +59,14 @@ public class Employee
     private void ValidateName(string name)
     {
         if (string.IsNullOrWhiteSpace(name) || name.Length > EmpNameMaxLength)
+        {
             throw new DomainException($"氏名は1文字以上{EmpNameMaxLength}文字以内で入力してください");
+        }
     }
     /// <summary>
     /// 生年月日の検証
     /// </summary>
-    private DateTime ValidateBirthday(string birthday)
+    private void ValidateBirthday(string birthday)
     {
         if (string.IsNullOrWhiteSpace(birthday)){
             throw new DomainException("生年月日は必須です");
@@ -67,32 +75,57 @@ public class Employee
         {
             throw new DomainException("生年月日が不正です");
         }
-
-        return result;
     }
     /// <summary>
     /// 電話番号の検証
     /// </summary>
     private void ValidatePhoneNumber(string phoneNumber)
     {
-        if (string.IsNullOrWhiteSpace(name) || name.Length > EmpNameMaxLength)
-            throw new DomainException($"氏名は1文字以上{EmpNameMaxLength}文字以内で入力してください");
+        if (string.IsNullOrWhiteSpace(phoneNumber))
+        {
+            throw new DomainException("電話番号は必須です");
+        }
+        if (phoneNumber.All(string.IsDigit))
+        {
+            throw new DomainException("電話番号が不正です");
+        }
+        if (name.Length > PhoneNumberMaxLength)
+        {
+            throw new DomainException($"電話番号が不正です");
+        }
+
     }
     /// <summary>
     /// メールアドレスの検証
     /// </summary>
     private void ValidateEmail(string email)
     {
-        if (string.IsNullOrWhiteSpace(name) || name.Length > EmpNameMaxLength)
-            throw new DomainException($"氏名は1文字以上{EmpNameMaxLength}文字以内で入力してください");
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            throw new DomainException("メールアドレスは必須です");
+        }
+        if (!email.Contains("@"))
+        {
+            throw new DomainException($"メールアドレスが不正です");
+        }
+        if (email.Length > EmailMaxLength)
+        {
+            throw new DomainException($"メールアドレスが不正です");
+        }
     }
     /// <summary>
-    /// 電話番号の検証
+    /// 住所の検証
     /// </summary>
     private void ValidateAddress(string address)
     {
-        if (string.IsNullOrWhiteSpace(name) || name.Length > EmpNameMaxLength)
-            throw new DomainException($"氏名は1文字以上{EmpNameMaxLength}文字以内で入力してください");
+        if (string.IsNullOrWhiteSpace(address))
+        {
+            throw new DomainException("住所は必須です");
+        }
+        if (address.Length > AddressMaxLength)
+        {
+            throw new DomainException($"住所が不正です");
+        }
     }
 
 
@@ -112,6 +145,15 @@ public class Employee
     {
         Department = department;
     }
+
+    /// <summary>
+    /// 生年月日を変更する
+    /// </summary>
+    public void ChangeBirthday(Department? department)
+    {
+        Department = department;
+    }
+
 
     /// <summary>
     /// 等価性（IDによる比較）
