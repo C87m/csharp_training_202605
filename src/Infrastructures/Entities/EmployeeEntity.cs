@@ -23,34 +23,4 @@ public class EmployeeEntity
     /// </summary>
     [Column("dept_id")]
     public int? DeptId { get; set; }
-    /// <summary>
-    /// 生年月日
-    /// </summary>
-    [Column("birthday")]
-    public string? Birthday { get; set; }
-    /// <summary>
-    /// 性別
-    /// </summary>
-    [Column("gender")]
-    public string Gender { get; set; } = string.Empty;
-    /// <summary>
-    /// 電話番号
-    /// </summary>
-    [Column("phoneNumber")]
-    public string PhoneNumber { get; set; } = string.Empty;
-    /// <summary>
-    /// メールアドレス
-    /// </summary>
-    [Column("email")]
-    public string Email { get; set; } = string.Empty;
-    /// <summary>
-    /// 住所
-    /// </summary>
-    [Column("address")]
-    public string Address { get; set; } = string.Empty;
-    /// <summary>
-    /// 削除フラグ
-    /// </summary>
-    [Column("deleteFlag")]
-    public bool DeleteFlag { get; set; } = false;
 }

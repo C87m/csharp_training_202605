@@ -27,26 +27,6 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
         {
             entity.DeptId = domain.Department.Id;
         }
-        if (domain.Birthday != null)
-        {
-            entity.Birthday = domain.Birthday;
-        }
-        if (domain.Gender != null)
-        {
-            entity.Gender = domain.Gender;
-        }
-        if (domain.PhoneNumber != null)
-        {
-            entity.PhoneNumber = domain.PhoneNumber;
-        }
-        if (domain.Email != null)
-        {
-            entity.Email = domain.Email;
-        }
-        if (domain.Address != null)
-        {
-            entity.Address = domain.Address;
-        }
         return entity;
     }
 
@@ -60,13 +40,7 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
         var employee = new Employee(
             target.EmpId,
             target.EmpName,
-            null,
-            target.Birthday,
-            target.Gender,
-            target.PhoneNumber,
-            target.Email,
-            target.Address,
-            target.DeleteFlag
+            null
         );
         return employee;
     }

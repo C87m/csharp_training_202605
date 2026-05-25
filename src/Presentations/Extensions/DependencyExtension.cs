@@ -7,6 +7,7 @@ using src.Infrastructures.Context;
 using src.Infrastructures.Repositories;
 using src.Presentations.Controllers;
 using src.Presentations.ViewModels;
+using src.Presentations.Adapter;
 namespace src.Presentations.Extensions;
 /// <summary>
 /// 依存定義および依存性注入クラス

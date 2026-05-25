@@ -1,6 +1,5 @@
 using src.Applications.Repositories;
 using src.Applications.Domains;
-using src.Applications.Services;
 using src.Exceptions;
 using src.Infrastructures.Context;
 namespace src.Applications.Services.Impls;

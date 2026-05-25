@@ -5,13 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-// アプリケーションの依存関係を構築する
 builder.Services.SettingDependencyInjection(builder.Configuration);
 
 var app = builder.Build();
 
-// IngternalExceptionをハンドリングするミドルウェアを有効にする
 app.UseMiddleware<InternalExceptionLoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
