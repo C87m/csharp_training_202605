@@ -8,8 +8,10 @@ public class Employee
     public int? Id { get; private set; } // 社員Id
     public string Name { get; private set; } = string.Empty; // 氏名
     public Department? Department { get; private set; } // 所属部署（null可）
+    public string Address {get; private set; } // 住所
 
-    private const int MaxLength = 20;
+    private const int NameMaxLength = 20;
+    private const int AddressMaxLength = 100;
 
     /// <summary>
     /// コンストラクタ
@@ -17,12 +19,15 @@ public class Employee
     /// <param name="id">社員Id</param>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
-    public Employee(int? id, string name, Department? department)
+    /// <param name="address">住所</param>
+    public Employee(int? id, string name, Department? department, string address)
     {
         ValidateName(name);
+        ValidateAddress(address);
         Id = id;
         Name = name;
         Department = department;
+        Address = address;
     }
 
     /// <summary>
@@ -30,18 +35,26 @@ public class Employee
     /// </summary>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
-    public Employee(string name, Department? department)
-        : this(null, name, department) { }
+    /// <param name="address">住所</param>
+    public Employee(string name, Department? department, string address)
+        : this(null, name, department, address) { }
 
     /// <summary>
     /// 氏名の検証
     /// </summary>
     private void ValidateName(string name)
     {
-        if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("氏名は必須です");
-        if (name.Length > MaxLength)
-            throw new DomainException($"氏名は{MaxLength}文字以内で入力してください");
+        if (string.IsNullOrWhiteSpace(name)||name.Length > NameMaxLength)
+            throw new DomainException($"氏名は1文字以上{NameMaxLength}文字以内で入力してください");
+    }
+
+    /// <summary>
+    /// 氏名の検証
+    /// </summary>
+    private void ValidateAddress(string address)
+    {
+        if (string.IsNullOrWhiteSpace(address)||address.Length > AddressMaxLength)
+            throw new DomainException($"住所は1文字以上{AddressMaxLength}文字以内で入力してください");
     }
 
     /// <summary>
@@ -62,6 +75,15 @@ public class Employee
     }
 
     /// <summary>
+    /// 住所を変更する
+    /// </summary>
+    public void ChangeAddress(string address)
+    {
+        ValidateName(address);
+        Address = address;
+    }
+
+    /// <summary>
     /// 等価性（IDによる比較）
     /// </summary>
     public override bool Equals(object? obj)
@@ -74,5 +96,5 @@ public class Employee
     public override int GetHashCode() => Id?.GetHashCode() ?? 0;
 
     public override string ToString()
-        => $"{Id?.ToString() ?? "未登録"}: {Name} / {Department?.Name ?? "未配属"}";
+        => $"{Id?.ToString() ?? "未登録"}: {Name} / {Department?.Name ?? "未配属" } / {Address}";
 }

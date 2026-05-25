@@ -27,6 +27,13 @@ public class EmployeeRegisterViewModel
     public string? DeptName { get; set; } = string.Empty;
 
     /// <summary>
+    /// 住所
+    /// </summary>
+    [Display(Name = "住所")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    public string? Address { get; set; } = string.Empty;
+
+    /// <summary>
     /// 部署のリストをSelectListItemのリストに変換してプロパティに設定する
     /// </summary>
     /// <param name="departments"></param>
@@ -51,6 +58,6 @@ public class EmployeeRegisterViewModel
 
     public override string ToString()
     {
-        return $"Name={Name} , DeptId={DeptId} , DeptName={DeptName} , Departments={Departments}";
+        return $"Name={Name} , DeptId={DeptId} , DeptName={DeptName} , Departments={Departments}, Address={Address}";
     }
 }

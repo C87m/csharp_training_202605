@@ -19,6 +19,11 @@
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.DeptName)</td>
                         <td>@Html.DisplayFor(m => m.DeptName)</td>
                     </tr>
+                    <tr>
+                         @*EmployeeRegisterViewModelのAddressプロパティの値を表示する*@
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Address)</td>
+                        <td>@Html.DisplayFor(m => m.Address)</td>
+                    </tr>
                 </tbody>
             </table>    
 
@@ -28,6 +33,7 @@
                 <input type="hidden" asp-for="Name" />
                 <input type="hidden" asp-for="DeptId" />
                 <input type="hidden" asp-for="DeptName" />
+                <input type="hidden" asp-for="Address" />
                 @*formaction/formmethod ボタンごとに送信先を変える*@
                 @*同じフォーム内で[登録]と[戻る]を分岐できる*@
                 <div class="text-center mt-4">

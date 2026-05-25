@@ -23,4 +23,10 @@ public class EmployeeEntity
     /// </summary>
     [Column("dept_id")]
     public int? DeptId { get; set; }
+
+    /// <summary>
+    /// 住所
+    /// </summary>
+    [Column("address")]
+    public string Address { get; set; } = string.Empty;
 }

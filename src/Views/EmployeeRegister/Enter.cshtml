@@ -24,6 +24,13 @@
                     @*asp-itemsはSelectListItemのリストを受け取る*@
                     <select asp-for="DeptId" asp-items="Model.Departments" class="form-control"></select> 
                 </div>
+                <div class="mb-3">
+                    @* Tag Helperがname属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
+                    <label asp-for="Address" class="form-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    @*バリデーション(ModelState)エラーを表示する*@
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">完了</button>
                 </div>
