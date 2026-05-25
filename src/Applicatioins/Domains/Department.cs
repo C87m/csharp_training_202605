@@ -7,7 +7,7 @@ public class Department
 {
     public int? Id { get; private set; }      // 部署Id
     public string? Name { get; private set; } = string.Empty;    // 部署名
-    private const int MaxLength = 20; // 部署名の長さ
+    private const int MaxLength = 10; // 部署名の長さ
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -43,10 +43,8 @@ public class Department
     {
         if (name is not null)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new DomainException("部署名は必須です");
-            if (name.Length > MaxLength)
-                throw new DomainException($"部署名は{MaxLength}文字以内で入力してください");
+            if (string.IsNullOrWhiteSpace(name) || name.Length > MaxLength)
+                throw new DomainException($"部署名は1文字以上{MaxLength}文字以内で入力してください");
         }
     }
 
