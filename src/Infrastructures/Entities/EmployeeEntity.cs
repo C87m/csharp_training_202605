@@ -23,6 +23,11 @@ public class EmployeeEntity
     /// </summary>
     [Column("dept_id")]
     public int? DeptId { get; set; }
+    /// <summary>
+    /// メールアドレス
+    /// </summary>
+    [Column("email")]
+    public string Email { get; set; } = string.Empty;
 
     /// <summary>
     /// 住所
