@@ -59,7 +59,8 @@ public class DepartmentRepository : IDepartmentRepository
             var result = _context.Departments.FirstOrDefault(d => d.DeptId == id);
             if (result == null)
             {
-                return null;
+                throw new InternalException(
+                "指定された部署Idの部署を取得できませんでした。");
             }
             return _adapter.Restore(result);
         }
