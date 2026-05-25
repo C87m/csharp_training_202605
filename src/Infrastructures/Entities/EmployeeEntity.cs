@@ -29,6 +29,11 @@ public class EmployeeEntity
     [Column("birthday")]
     public DateOnly Birthday { get; set; }
     /// <summary>
+    /// 電話番号
+    /// </summary>
+    [Column("phone_number")]
+    public string PhoneNumber { get; set; } = string.Empty;
+    /// <summary>
     /// メールアドレス
     /// </summary>
     [Column("email")]

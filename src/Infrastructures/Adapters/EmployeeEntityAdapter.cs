@@ -21,7 +21,8 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
             EmpName = domain.Name,
             Birthday = domain.Birthday,
             Address = domain.Address,
-            Email = domain.Email
+            Email = domain.Email,
+            PhoneNumber = domain.PhoneNumber,
         };
         if (domain.Id != null){
             entity.EmpId = domain.Id.Value;
@@ -45,6 +46,7 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
             target.EmpName,
             null,
             target.Birthday,
+            target.PhoneNumber,
             target.Email,
             target.Address
         );

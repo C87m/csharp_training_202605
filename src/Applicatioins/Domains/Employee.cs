@@ -9,10 +9,12 @@ public class Employee
     public string Name { get; private set; } = string.Empty; // 氏名
     public Department? Department { get; private set; } // 所属部署（null可）
     public DateOnly Birthday {get; private set; } // 生年月日
+    public string PhoneNumber {get; private set; } // 電話番号
     public string Email {get; private set; } // メールアドレス
     public string Address {get; private set; } // 住所
 
     private const int NameMaxLength = 20;
+    private const int PhoneNumberMaxLength = 20;
     private const int AddressMaxLength = 100;
     private const int EmailMaxLength = 100;
 
@@ -22,21 +24,24 @@ public class Employee
     /// <param name="id">社員Id</param>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
+    /// <param name="phoneNumber">電話番号</param>
     /// <param name="address">住所</param>
     /// <param name="email">メールアドレス</param>
     /// <param name="birthday">生年月日</param>
-    public Employee(int? id, string name, Department? department, DateOnly birthday, string address, string email)
+    public Employee(int? id, string name, Department? department, DateOnly birthday, string phoneNumber, string address, string email)
     {
         ValidateName(name);
         ValidateAddress(address);
         ValidateEmail(email);
         ValidateBirthday(birthday);
+        ValidatePhoneNumber(phoneNumber);
         Id = id;
         Name = name;
         Department = department;
         Birthday = birthday;
         Address = address;
         Email = email;
+        PhoneNumber = phoneNumber;
     }
 
     /// <summary>
@@ -44,11 +49,12 @@ public class Employee
     /// </summary>
     /// <param name="name">氏名</param>
     /// <param name="department">所属部署</param>
+    /// <param name="phoneNumber">電話番号</param>
     /// <param name="address">住所</param>
     /// <param name="email">メールアドレス</param>
     /// <param name="birthday">生年月日</param>
-    public Employee(string name, Department? department, DateOnly birthday, string address, string email)
-        : this(null, name, department, birthday, address, email) { }
+    public Employee(string name, Department? department, DateOnly birthday, string phoneNumber, string address, string email)
+        : this(null, name, department, birthday, phoneNumber, address, email) { }
 
     /// <summary>
     /// 氏名の検証
@@ -66,6 +72,17 @@ public class Employee
     {
         if (birthday > DateOnly.FromDateTime(DateTime.Today))
             throw new DomainException($"未来の日付が選択されています");
+    }
+
+    /// <summary>
+    /// 氏名の検証
+    /// </summary>
+    private void ValidatePhoneNumber(string phoneNumber)
+    {
+        if (string.IsNullOrWhiteSpace(phoneNumber))
+            throw new DomainException($"電話番号は必須です");
+        if (phoneNumber.Length > PhoneNumberMaxLength)
+            throw new DomainException($"不正な電話番号です");
     }
 
     /// <summary>
@@ -104,6 +121,15 @@ public class Employee
     }
 
     /// <summary>
+    /// 電話番号を変更する
+    /// </summary>
+    public void ChangePhoneNumber(string phoneNumber)
+    {
+        ValidateName(phoneNumber);
+        Name = phoneNumber;
+    }
+
+    /// <summary>
     /// メールアドレスを変更する
     /// </summary>
     public void ChangeEmail(string email)
@@ -134,5 +160,5 @@ public class Employee
     public override int GetHashCode() => Id?.GetHashCode() ?? 0;
 
     public override string ToString()
-        => $"{Id?.ToString() ?? "未登録"}: {Name} / {Department?.Name ?? "未配属" } / {Address} / {Email}";
+        => $"{Id?.ToString() ?? "未登録"}: {Name} / {Department?.Name ?? "未配属" } / {Address} / {Email} / {PhoneNumber}";
 }
