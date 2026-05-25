@@ -24,6 +24,11 @@ public class EmployeeEntity
     [Column("dept_id")]
     public int? DeptId { get; set; }
     /// <summary>
+    /// 生年月日
+    /// </summary>
+    [Column("birthday")]
+    public DateOnly Birthday { get; set; }
+    /// <summary>
     /// メールアドレス
     /// </summary>
     [Column("email")]

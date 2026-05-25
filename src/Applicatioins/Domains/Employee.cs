@@ -8,6 +8,7 @@ public class Employee
     public int? Id { get; private set; } // 社員Id
     public string Name { get; private set; } = string.Empty; // 氏名
     public Department? Department { get; private set; } // 所属部署（null可）
+    public DateOnly Birthday {get; private set; } // 生年月日
     public string Email {get; private set; } // メールアドレス
     public string Address {get; private set; } // 住所
 
@@ -23,14 +24,17 @@ public class Employee
     /// <param name="department">所属部署</param>
     /// <param name="address">住所</param>
     /// <param name="email">メールアドレス</param>
-    public Employee(int? id, string name, Department? department, string address, string email)
+    /// <param name="birthday">生年月日</param>
+    public Employee(int? id, string name, Department? department, DateOnly birthday, string address, string email)
     {
         ValidateName(name);
         ValidateAddress(address);
         ValidateEmail(email);
+        ValidateBirthday(birthday);
         Id = id;
         Name = name;
         Department = department;
+        Birthday = birthday;
         Address = address;
         Email = email;
     }
@@ -42,8 +46,9 @@ public class Employee
     /// <param name="department">所属部署</param>
     /// <param name="address">住所</param>
     /// <param name="email">メールアドレス</param>
-    public Employee(string name, Department? department, string address, string email)
-        : this(null, name, department, address, email) { }
+    /// <param name="birthday">生年月日</param>
+    public Employee(string name, Department? department, DateOnly birthday, string address, string email)
+        : this(null, name, department, birthday, address, email) { }
 
     /// <summary>
     /// 氏名の検証
@@ -52,6 +57,15 @@ public class Employee
     {
         if (string.IsNullOrWhiteSpace(name)||name.Length > NameMaxLength)
             throw new DomainException($"氏名は1文字以上{NameMaxLength}文字以内で入力してください");
+    }
+
+    /// <summary>
+    /// 生年月日の検証
+    /// </summary>
+    private void ValidateBirthday(DateOnly birthday)
+    {
+        if (birthday > DateOnly.FromDateTime(DateTime.Today))
+            throw new DomainException($"未来の日付が選択されています");
     }
 
     /// <summary>

@@ -14,6 +14,12 @@ public class EmployeeRegisterViewModel
     [Required(ErrorMessage = "{0}は入力必須です。")]
     public string? Name { get; set; } = string.Empty;
     /// <summary>
+    /// 生年月日
+    /// </summary>
+    [Display(Name = "生年月日")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    public DateOnly Birthday { get; set; }
+    /// <summary>
     /// 所属部署
     /// </summary>
     [Display(Name = "所属部署")]
@@ -66,6 +72,6 @@ public class EmployeeRegisterViewModel
 
     public override string ToString()
     {
-        return $"Name={Name} , DeptId={DeptId} , DeptName={DeptName} , Departments={Departments}, Address={Address}, Email={Email}";
+        return $"Name={Name} , DeptId={DeptId} , DeptName={DeptName} , Departments={Departments}, Address={Address}, Email={Email}, Birthday={Birthday}";
     }
 }

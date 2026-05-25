@@ -25,6 +25,11 @@
                     <select asp-for="DeptId" asp-items="Model.Departments" class="form-control"></select> 
                 </div>
                 <div class="mb-3">
+                    <label asp-for="Birthday" class="form-label"></label>
+                    @*asp-itemsはSelectListItemのリストを受け取る*@
+                    <input type="date" asp-for="Birthday" asp-items="Model.Departments" class="form-control" value="2003-01-01"></select> 
+                </div>
+                <div class="mb-3">
                     @* Tag Helperがname属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
                     <label asp-for="Email" class="form-label"></label>
                     <input asp-for="Email" class="form-control" />

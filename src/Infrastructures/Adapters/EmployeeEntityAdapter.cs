@@ -19,6 +19,7 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
     {
         var entity = new EmployeeEntity{
             EmpName = domain.Name,
+            Birthday = domain.Birthday,
             Address = domain.Address,
             Email = domain.Email
         };
@@ -43,6 +44,7 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
             target.EmpId,
             target.EmpName,
             null,
+            target.Birthday,
             target.Email,
             target.Address
         );
