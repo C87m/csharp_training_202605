@@ -49,4 +49,31 @@ public class DepartmentRepositoryTests
         IsTrue(actual.Any(c => c.Equals(new Department(3, "人事部"))));
     }
 
+    [TestMethod("存在する部署IDを検索")]
+    public void FindById_WhenIdCorrect()
+    {
+        var expected = new Department(1, "総務部");
+        var actual = _repository.FindById(1);
+
+        AreEqual(expected, actual);
+        AreEqual("総務部", actual?.Name);
+    }
+
+    [TestMethod("存在しない部署IDを検索")]
+    public void FindById_WhenIdNotFound()
+    {
+        var exception = ThrowsException<InternalException>(
+                () => _repository.FindById(999)); 
+        AreEqual("指定された部署Idの部署を取得できませんでした。", exception.Message);
+    }
+
+    [TestMethod("部署登録完了")]
+    public void Create_Success()
+    {
+        var newDepartment = new Department(null, "システム開発部");
+        _repository.Create(newDepartment);
+
+        var exception = new Department(4, "システム開発部");
+        AreEqual(exception, _repository.FindById(4));
+    }
 }
