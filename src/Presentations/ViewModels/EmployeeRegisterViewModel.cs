@@ -33,6 +33,12 @@ public class EmployeeRegisterViewModel
     public string? DeptName { get; set; } = string.Empty;
 
     /// <summary>
+    /// 性別
+    /// </summary>
+    [Display(Name = "性別")]
+    public int Gender { get; set; } = 2;
+
+    /// <summary>
     /// 電話番号
     /// </summary>
     [Display(Name = "電話番号")]
@@ -75,6 +81,9 @@ public class EmployeeRegisterViewModel
         }
         Departments = selectItems;
     }
+    
+    // 性別のセレクトリストを作りたい
+
     // 部署のリスト
     public List<SelectListItem>? Departments { get; set; } = null;
 

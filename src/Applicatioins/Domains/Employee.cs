@@ -9,6 +9,7 @@ public class Employee
     public string Name { get; private set; } = string.Empty; // 氏名
     public Department? Department { get; private set; } // 所属部署（null可）
     public DateOnly Birthday {get; private set; } // 生年月日
+    public int? Gender {get; private set; } // 性別
     public string PhoneNumber {get; private set; } // 電話番号
     public string Email {get; private set; } // メールアドレス
     public string Address {get; private set; } // 住所
@@ -28,17 +29,20 @@ public class Employee
     /// <param name="address">住所</param>
     /// <param name="email">メールアドレス</param>
     /// <param name="birthday">生年月日</param>
-    public Employee(int? id, string name, Department? department, DateOnly birthday, string phoneNumber, string address, string email)
+    /// <param name="gender">性別</param>
+    public Employee(int? id, string name, Department? department, DateOnly birthday, int? gender, string phoneNumber, string address, string email)
     {
         ValidateName(name);
         ValidateAddress(address);
         ValidateEmail(email);
         ValidateBirthday(birthday);
         ValidatePhoneNumber(phoneNumber);
+        ValidateGender(gender);
         Id = id;
         Name = name;
         Department = department;
         Birthday = birthday;
+        Gender = gender;
         Address = address;
         Email = email;
         PhoneNumber = phoneNumber;
@@ -53,8 +57,8 @@ public class Employee
     /// <param name="address">住所</param>
     /// <param name="email">メールアドレス</param>
     /// <param name="birthday">生年月日</param>
-    public Employee(string name, Department? department, DateOnly birthday, string phoneNumber, string address, string email)
-        : this(null, name, department, birthday, phoneNumber, address, email) { }
+    public Employee(string name, Department? department, DateOnly birthday, int gender, string phoneNumber, string address, string email)
+        : this(null, name, department, birthday, gender, phoneNumber, address, email) { }
 
     /// <summary>
     /// 氏名の検証
@@ -63,6 +67,15 @@ public class Employee
     {
         if (string.IsNullOrWhiteSpace(name)||name.Length > NameMaxLength)
             throw new DomainException($"氏名は1文字以上{NameMaxLength}文字以内で入力してください");
+    }
+
+    /// <summary>
+    /// 性別の検証
+    /// </summary>
+    private void ValidateGender(int? gender)
+    {
+        if (gender > 2)
+            throw new DomainException($"存在しない性別が選択されています");
     }
 
     /// <summary>
@@ -118,6 +131,15 @@ public class Employee
     public void ChangeDepartment(Department? department)
     {
         Department = department;
+    }
+
+    /// <summary>
+    /// 氏名を変更する
+    /// </summary>
+    public void ChangeGender(int gender)
+    {
+        ValidateGender(gender);
+        Gender = gender;
     }
 
     /// <summary>

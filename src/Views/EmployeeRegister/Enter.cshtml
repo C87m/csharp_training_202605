@@ -30,6 +30,11 @@
                     <input type="date" asp-for="Birthday" asp-items="Model.Departments" class="form-control" value="2003-01-01"></select> 
                 </div>
                 <div class="mb-3">
+                    <label asp-for="Gender" class="form-label"></label>
+                    @*asp-itemsはSelectListItemのリストを受け取る*@
+                    <select asp-for="Gender" asp-items="GenderList" class="form-control"></select> 
+                </div>
+                <div class="mb-3">
                     @* Tag Helperがname属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
                     <label asp-for="PhoneNumber" class="form-label"></label>
                     <input type="tel" asp-for="PhoneNumber" class="form-control" />

@@ -29,6 +29,11 @@ public class EmployeeEntity
     [Column("birthday")]
     public DateOnly Birthday { get; set; }
     /// <summary>
+    /// 性別
+    /// </summary>
+    [Column("gender")]
+    public int? Gender { get; set; }
+    /// <summary>
     /// 電話番号
     /// </summary>
     [Column("phone_number")]
