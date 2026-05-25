@@ -11,9 +11,9 @@ public class EmployeeEntity
     /// 従業員Id(主キー)
     /// </summary>
     [Key]
-    [Column("id")]
+    [Column("emp_id")]
     public int EmpId { get; set; }
-    [Column("name")]
+    [Column("emp_name")]
     /// <summary>
     /// 従業員名
     /// </summary>
