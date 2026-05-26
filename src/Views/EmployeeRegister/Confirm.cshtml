@@ -26,6 +26,11 @@
                     </tr>
                     <tr>
                          @*EmployeeRegisterViewModelのAddressプロパティの値を表示する*@
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Gender)</td>
+                        <td>@Html.DisplayFor(m => m.Gender)</td>
+                    </tr>
+                    <tr>
+                         @*EmployeeRegisterViewModelのAddressプロパティの値を表示する*@
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.PhoneNumber)</td>
                         <td>@Html.DisplayFor(m => m.PhoneNumber)</td>
                     </tr>
@@ -52,6 +57,7 @@
                 <input type="hidden" asp-for="Email" />
                 <input type="hidden" asp-for="Birthday" />
                 <input type="hidden" asp-for="PhoneNumber" />
+                <input type="hidden" asp-for="Gender" />
                 @*formaction/formmethod ボタンごとに送信先を変える*@
                 @*同じフォーム内で[登録]と[戻る]を分岐できる*@
                 <div class="text-center mt-4">

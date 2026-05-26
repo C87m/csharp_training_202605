@@ -12,12 +12,14 @@ public class EmployeeRegisterViewModel
     /// </summary>
     [Display(Name = "氏名")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
+    [StringLength(10, ErrorMessage = "{0}は1文字以上10文字以内で入力してください。")]
     public string? Name { get; set; } = string.Empty;
     /// <summary>
     /// 生年月日
     /// </summary>
     [Display(Name = "生年月日")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
+    [Range(typeof(DateOnly), "1900/01/01", "2026/05/29", ErrorMessage = "未来の日付は設定できません。")]
     public DateOnly Birthday { get; set; }
     /// <summary>
     /// 所属部署
@@ -81,11 +83,19 @@ public class EmployeeRegisterViewModel
         }
         Departments = selectItems;
     }
-    
-    // 性別のセレクトリストを作りたい
-
     // 部署のリスト
     public List<SelectListItem>? Departments { get; set; } = null;
+
+    /// <summary>
+    /// 性別をプルダウン表示するリスト
+    /// </summary>
+    /// <value></value>
+    public List<SelectListItem> GenderList { get; set; } = new List<SelectListItem>
+    {
+        new SelectListItem{ Text="男", Value="0" , Selected = true },
+        new SelectListItem{ Text= "女", Value= "1" },
+        new SelectListItem{ Text= "その他", Value= "2" },
+    };
 
     public override string ToString()
     {
