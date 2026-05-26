@@ -89,4 +89,47 @@ public class DepartmentRepository : IDepartmentRepository
                 "部署の永続化ができませんでした。", e);
         }
     }
+
+    /// <summary>
+    /// 部署を更新する
+    /// </summary>
+    /// <param name="department">更新対象の部署</param>
+    public void Renew(Department department)
+    {
+        
+        var existingEntity = _context.Departments.FirstOrDefault(d => d.DeptId == department.Id);
+        if(existingEntity == null)
+        {
+            throw new InternalException($"部署が見つかりません。");
+        }
+
+        try
+        {
+            existingEntity.DeptName = department.Name!;
+            _context.SaveChanges();
+            
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("部署の更新ができませんでした。", e);
+        }
+    }
+
+    /// <summary>
+    /// 部署を削除する
+    /// </summary>
+    /// <param name="department">削除対象の部署</param>
+    public void Delete(Department department)
+    {
+        try
+        {
+            var entity = _adapter.Convert(department);
+            _context.Departments.Remove(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("部署の削除ができませんでした。", e);
+        }
+    }
 }

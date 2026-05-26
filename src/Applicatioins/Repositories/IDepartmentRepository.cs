@@ -23,4 +23,15 @@ public interface IDepartmentRepository
     /// </summary>
     /// <param name="employee">永続化対象の部署</param>
     void Create(Department department);
+
+    /// <summary>
+    /// 部署を更新する
+    /// </summary>
+    /// <param name="department">更新対象の部署</param>
+    public void Renew(Department department);
+
+    /// <summary>
+    /// 部署を削除する
+    /// </summary>
+    /// <param name="department">削除対象の部署</param>
 }
