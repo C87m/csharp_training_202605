@@ -73,6 +73,8 @@ public static class DependencyExtension
         services.AddScoped<IEmployeeRegisterService, EmployeeRegisterService>();
         // 従業員登録サービスインターフェイスの実装
         services.AddScoped<IEmployeeShowService, EmployeeShowService>();
+        // 従業員削除サービスインターフェイスの実装
+        services.AddScoped<IEmployeeDeleteService, EmployeeDeleteService>();
         // 部署登録サービスインターフェイスの実装
         services.AddScoped<IDepartmentRegisterService, DepartmentRegisterService>();
         // 部署一覧サービスインターフェイスの実装
@@ -93,6 +95,8 @@ public static class DependencyExtension
         services.AddScoped<EmployeeRegisterViewModelAdapter>();
         // 従業員登録ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
         services.AddScoped<EmployeeShowViewModelAdapter>();
+        // 従業員削除ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
+        services.AddScoped<EmployeeDeleteViewModelAdapter>();
         // 部署登録ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
         services.AddScoped<DepartmentRegisterViewModelAdapter>();
         // 部署一覧ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
@@ -106,6 +110,10 @@ public static class DependencyExtension
         services.AddScoped(
             provider =>
             new TempDataStore<EmployeeRegisterViewModel>("EmployeeRegisterViewModel")
+        );
+        services.AddScoped(
+            provider =>
+            new TempDataStore<EmployeeDeleteViewModel>("EmployeeRegisterViewModel")
         );
         services.AddScoped(
             provider =>

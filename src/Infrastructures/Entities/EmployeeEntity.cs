@@ -49,4 +49,10 @@ public class EmployeeEntity
     /// </summary>
     [Column("address")]
     public string Address { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 削除フラグ
+    /// </summary>
+    [Column("delete_flag")]
+    public bool DeleteFlag { get; set; } = false;
 }

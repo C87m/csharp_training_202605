@@ -14,6 +14,11 @@ public interface IEmployeeRepository
     /// すべての社員を取得する
     /// </summary>
     /// <returns>社員のリスト</returns>
+    Employee FindById(int id);
+    /// <summary>
+    /// すべての社員を取得する
+    /// </summary>
+    /// <returns>社員のリスト</returns>
     List<int?> FindAllDept();
 
     /// <summary>
@@ -34,4 +39,10 @@ public interface IEmployeeRepository
     /// </summary>
     /// <param name="department">更新対象の部署</param>
     public void Renew(Employee employee);
+
+    /// <summary>
+    /// 部署を削除する
+    /// </summary>
+    /// <param name="department">更新対象の部署</param>
+    public void Delete(Employee employee);
 }

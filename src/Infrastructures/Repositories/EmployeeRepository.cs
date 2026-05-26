@@ -37,7 +37,7 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            var entities = _context.Employees.ToList();
+            var entities = _context.Employees.Where(i=>i.DeleteFlag==false).ToList();
             var results = new List<Employee>();
             foreach (var entity in entities)
             {
@@ -55,11 +55,33 @@ public class EmployeeRepository : IEmployeeRepository
     /// すべての社員を取得する
     /// </summary>
     /// <returns>社員のリスト</returns>
+    public Employee FindById(int id)
+    {
+        try
+        {
+            var result = _context.Employees.FirstOrDefault(d => d.EmpId == id);
+            if (result == null)
+            {
+                throw new InternalException(
+                "指定された部署Idの部署を取得できませんでした。");
+            }
+            return _adapter.Restore(result);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "指定された部署Idの部署を取得できませんでした。", e);
+        }
+    }
+    /// <summary>
+    /// すべての社員を取得する
+    /// </summary>
+    /// <returns>社員のリスト</returns>
     public List<int?> FindAllDept()
     {
         try
         {
-            var entities = _context.Employees.ToList();
+            var entities = _context.Employees.Where(i=>i.DeleteFlag==false).ToList();
             var results = new List<int?>();
             foreach (var entity in entities)
             {
@@ -81,7 +103,7 @@ public class EmployeeRepository : IEmployeeRepository
     /// <returns>取得して部署</returns>
     public List<Employee> FindMember(int id)
     {
-        var entities = _context.Employees.Where(i => i.DeptId==id).ToList();
+        var entities = _context.Employees.Where(i=>i.DeleteFlag==false).Where(i => i.DeptId==id).ToList();
             var results = new List<Employee>();
             foreach (var entity in entities)
             {
@@ -131,6 +153,30 @@ public class EmployeeRepository : IEmployeeRepository
         catch (Exception e)
         {
             throw new InternalException("社員の更新ができませんでした。", e);
+        }
+    }
+
+    /// <summary>
+    /// 部署を削除する
+    /// </summary>
+    /// <param name="department">更新対象の部署</param>
+    public void Delete(Employee employee)
+    {
+        var existingEntity = _context.Employees.FirstOrDefault(d => d.EmpId == employee.Id);
+        if(existingEntity == null)
+        {
+            throw new InternalException($"社員が見つかりません。");
+        }
+
+        try
+        {
+            existingEntity.DeleteFlag = true;
+            _context.SaveChanges();
+            
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("社員の削除ができませんでした。", e);
         }
     }
 }
