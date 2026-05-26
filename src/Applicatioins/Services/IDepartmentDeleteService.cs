@@ -19,7 +19,7 @@ public interface IDepartmentDeleteService
     /// 指定したIDの部署に所属する人数を返す
     /// </summary>
     /// <returns></returns>
-    int CountDeptMemberById(int id);
+    List<Employee> GetDeptMemberById(int id);
     /// <summary>
     /// 部署を削除する
     /// </summary>

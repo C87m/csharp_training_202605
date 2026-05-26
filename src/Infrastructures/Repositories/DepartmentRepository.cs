@@ -72,18 +72,6 @@ public class DepartmentRepository : IDepartmentRepository
     }
 
     /// <summary>
-    /// 指定された部署Idの部署の人数取得する
-    /// </summary>
-    /// <param name="id">部署Id</param>
-    /// <returns>取得して部署</returns>
-    public int CountMember(int id)
-    {
-        int count=0;
-        count = _context.Departments.
-        return count;
-    }
-
-    /// <summary>
     /// 部署を永続化する
     /// </summary>
     /// <param name="department">永続化対象の部署</param>

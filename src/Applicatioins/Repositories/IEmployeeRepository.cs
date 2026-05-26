@@ -15,10 +15,23 @@ public interface IEmployeeRepository
     /// </summary>
     /// <returns>社員のリスト</returns>
     List<int?> FindAllDept();
+
+    /// <summary>
+    /// 指定された部署Idの部署の人数取得する
+    /// </summary>
+    /// <param name="id">部署Id</param>
+    /// <returns>取得して部署</returns>
+    List<Employee> FindMember(int id);
     
     /// <summary>
     /// 従業員を永続化する
     /// </summary>
     /// <param name="employee">永続化対象の従業員</param>
     void Create(Employee employee);
+
+    /// <summary>
+    /// 部署を更新する
+    /// </summary>
+    /// <param name="department">更新対象の部署</param>
+    public void Renew(Employee employee);
 }

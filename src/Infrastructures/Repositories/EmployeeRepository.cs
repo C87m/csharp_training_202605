@@ -75,6 +75,22 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
+    /// 指定された部署Idの部署の人数取得する
+    /// </summary>
+    /// <param name="id">部署Id</param>
+    /// <returns>取得して部署</returns>
+    public List<Employee> FindMember(int id)
+    {
+        var entities = _context.Employees.Where(i => i.DeptId==id).ToList();
+            var results = new List<Employee>();
+            foreach (var entity in entities)
+            {
+                results.Add(_adapter.Restore(entity));
+            }   
+            return results;
+    }
+
+    /// <summary>
     /// 従業員を永続化する
     /// </summary>
     /// <param name="employee">永続化対象の従業員</param>
@@ -90,6 +106,31 @@ public class EmployeeRepository : IEmployeeRepository
         {
             throw new InternalException(
                 "従業員の永続化ができませんでした。", e);
+        }
+    }
+
+    /// <summary>
+    /// 部署を更新する
+    /// </summary>
+    /// <param name="department">更新対象の部署</param>
+    public void Renew(Employee employee)
+    {
+        
+        var existingEntity = _context.Employees.FirstOrDefault(d => d.EmpId == employee.Id);
+        if(existingEntity == null)
+        {
+            throw new InternalException($"社員が見つかりません。");
+        }
+
+        try
+        {
+            existingEntity.DeptId = employee.Department!.Id;
+            _context.SaveChanges();
+            
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("社員の更新ができませんでした。", e);
         }
     }
 }

@@ -32,7 +32,7 @@ public class DepartmentDeleteViewModel
         var selectItems = new List<SelectListItem>();
         foreach (var dept in departments)
         {
-            if (dept.Id.HasValue)
+            if (dept.Id.HasValue && dept.Id != 1)
             {
                 var item = new SelectListItem();
                 item.Value = dept.Id.Value.ToString();
