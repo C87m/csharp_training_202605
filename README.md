@@ -32,6 +32,12 @@ Web開発演習
 - 部署一覧機能：テストまで完了
 - 社員登録機能：フィールド追加途中(ほぼ完成)
 
+### 5/26
+- 社員登録機能：実装完了
+- 部署更新機能：実装完了
+- 部署削除機能：実装完了
+- 社員削除機能：途中
+
 ## 社員情報管理システム
 社員情報と部門情報の管理を行う。
 人事部など管理者用のシステム。
@@ -112,18 +118,22 @@ Web開発演習
 - 実装
   - 社員登録機能(5/25未完了分)
   - 社員一覧機能(5/25未完了分)
-  - 社員更新機能
+  - ~~社員更新機能~~(5/26)修正
   - 部門更新機能
   - 社員削除機能
   - 部門削除機能
 
 ### 5/27
 - 実装
+　- 社員削除機能
+  - 社員更新機能  
   - ログイン機能
-  - 微修正
-  - UIの調整
+- テスト
 
 ### 5/28
+- 実装
+  - 微修正
+  - UIの調整
 - プレゼンテーション資料作成
 
 ### 5/29
@@ -170,6 +180,7 @@ CREATE TABLE employee
   phone_number varchar(20) NOT NULL,
   email varchar(100) NOT NULL,
   address varchar(100) NOT NULL,
+　delete_flag boolean NOT NULL DEFAULT FALSE,
   CONSTRAINT pk_emp_no PRIMARY KEY (emp_id),
   CONSTRAINT fk_dept_no FOREIGN KEY (dept_id)
       REFERENCES department(dept_id)
