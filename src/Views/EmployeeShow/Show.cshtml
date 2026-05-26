@@ -1,0 +1,49 @@
+@* クラスの名前空間を指定する(C#と同じ) *@
+@using src.Presentations.ViewModels
+@* View が受け取るデータ型（ViewModel）を宣言asp-for はこの型のプロパティと結びつける *@
+@model List<EmployeeShowViewModel>;
+@{
+    ViewData["Title"] = "社員一覧";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6"> 
+            <!-- 表形式で一覧を表示 -->
+            <table class="table table-bordered" style="table-layout: fixed;"> <!-- Bootstrapのスタイルを適用した表 -->
+                <thead> <!-- 表のヘッダー -->
+                    <tr> <!-- ヘッダー行 -->
+                        <th>名前</th> <!-- 部署列のヘッダー -->
+                        <th>部署</th> <!-- 部署列のヘッダー -->
+                        <th>生年月日</th> <!-- 部署列のヘッダー -->
+                        <th>性別</th> <!-- 部署列のヘッダー -->
+                        <th>電話番号</th> <!-- 部署列のヘッダー -->
+                        <th>メールアドレス</th> <!-- 部署列のヘッダー -->
+                        <th>住所</th> <!-- 部署列のヘッダー -->
+                    </tr>
+                </thead>
+                <tbody> <!-- 表の本体 -->
+                    @foreach (var Employee in Model) // 受け取ったリストを1件ずつ処理
+                    {
+                        <tr> <!-- データ行 -->
+                            <td>@Employee.Name</td> <!-- 部署を表示 -->
+                            <td>@Employee.DeptName</td> <!-- 部署を表示 -->
+                            <td>@Employee.Birthday.ToString("yyyy年MM月dd日")</td> <!-- 部署を表示 -->
+                            <td>@Employee.GenderList.FirstOrDefault(x => x.Value == Employee.Gender.ToString())?.Text</td> <!-- 部署を表示 -->
+                            <td>@Employee.PhoneNumber</td> <!-- 部署を表示 -->
+                            <td>@Employee.Email</td> <!-- 部署を表示 -->
+                            <td>@Employee.Address</td> <!-- 部署を表示 -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="text-center">
+            @*メニューに戻る*@
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+                メニューに戻る
+            </a>
+            </div>
+        </div>
+    </div>
+</div>

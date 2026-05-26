@@ -30,6 +30,51 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
+    /// すべての社員を取得する
+    /// </summary>
+    /// <returns>社員のリスト</returns>
+    public List<Employee> FindAll()
+    {
+        try
+        {
+            var entities = _context.Employees.ToList();
+            var results = new List<Employee>();
+            foreach (var entity in entities)
+            {
+                results.Add(_adapter.Restore(entity));
+            }   
+            return results;
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "すべての部署を取得できませんでした。", e);
+        }
+    }
+    /// <summary>
+    /// すべての社員を取得する
+    /// </summary>
+    /// <returns>社員のリスト</returns>
+    public List<int?> FindAllDept()
+    {
+        try
+        {
+            var entities = _context.Employees.ToList();
+            var results = new List<int?>();
+            foreach (var entity in entities)
+            {
+                results.Add(entity.DeptId);
+            }   
+            return results;
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "すべての部署を取得できませんでした。", e);
+        }
+    }
+
+    /// <summary>
     /// 従業員を永続化する
     /// </summary>
     /// <param name="employee">永続化対象の従業員</param>

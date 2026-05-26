@@ -71,6 +71,8 @@ public static class DependencyExtension
     {
         // 従業員登録サービスインターフェイスの実装
         services.AddScoped<IEmployeeRegisterService, EmployeeRegisterService>();
+        // 従業員登録サービスインターフェイスの実装
+        services.AddScoped<IEmployeeShowService, EmployeeShowService>();
         // 部署登録サービスインターフェイスの実装
         services.AddScoped<IDepartmentRegisterService, DepartmentRegisterService>();
         // 部署一覧サービスインターフェイスの実装
@@ -85,6 +87,8 @@ public static class DependencyExtension
     {
         // 従業員登録ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
         services.AddScoped<EmployeeRegisterViewModelAdapter>();
+        // 従業員登録ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
+        services.AddScoped<EmployeeShowViewModelAdapter>();
         // 部署登録ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
         services.AddScoped<DepartmentRegisterViewModelAdapter>();
         // 部署一覧ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装

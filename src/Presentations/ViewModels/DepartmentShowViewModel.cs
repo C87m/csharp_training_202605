@@ -8,16 +8,24 @@ namespace src.Presentations.ViewModels;
 ///
 /// コンストラクタ
 /// 
-public class DepartmentShowViewModel(Department domain)
+public class DepartmentShowViewModel
 {
     /// <summary>
     /// 選択された部署名
     /// </summary>
     [Display(Name = "部署名")]
-    public string? Name { get; set; } = domain.Name;
+    public string? Name { get; set; }
 
     public override string ToString()
     {
         return $"DeptName={Name}";
+    }
+
+    ///
+    /// コンストラクタ
+    /// 
+    public DepartmentShowViewModel(Department domain)
+    {
+        Name = domain.Name;
     }
 }
