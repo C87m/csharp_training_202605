@@ -30,7 +30,7 @@ public class Employee
     /// <param name="email">メールアドレス</param>
     /// <param name="birthday">生年月日</param>
     /// <param name="gender">性別</param>
-    public Employee(int? id, string name, Department? department, DateOnly birthday, int? gender, string phoneNumber, string address, string email)
+    public Employee(int? id, string name, Department? department, DateOnly birthday, int? gender, string phoneNumber, string email, string address)
     {
         ValidateName(name);
         ValidateAddress(address);
