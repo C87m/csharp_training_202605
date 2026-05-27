@@ -3,6 +3,7 @@ using src.Applications.Domains;
 using src.Applications.Repositories;
 using src.Infrastructures.Adapters;
 using src.Exceptions;
+using Microsoft.EntityFrameworkCore;
 namespace src.Infrastructures.Repositories;
 /// <summary>
 /// ドメインオブジェクト:従業員のCRUD操作インターフェイスの実装
@@ -113,6 +114,16 @@ public class EmployeeRepository : IEmployeeRepository
     }
 
     /// <summary>
+    /// Idから部署Idを取得する
+    /// </summary>
+    /// <returns>社員のリスト</returns>
+    public int FindDeptIdById(int id)
+    {
+
+        return (int)_context.Employees.FirstOrDefault(d => d.EmpId == id)!.DeptId!;
+    }
+
+    /// <summary>
     /// 従業員を永続化する
     /// </summary>
     /// <param name="employee">永続化対象の従業員</param>
@@ -146,7 +157,13 @@ public class EmployeeRepository : IEmployeeRepository
 
         try
         {
+            existingEntity.EmpName = employee.Name;
             existingEntity.DeptId = employee.Department!.Id;
+            existingEntity.Birthday = employee.Birthday;
+            existingEntity.Gender = employee.Gender;
+            existingEntity.PhoneNumber = employee.PhoneNumber;
+            existingEntity.Email = employee.Email;
+            existingEntity.Address = employee.Address;
             _context.SaveChanges();
             
         }

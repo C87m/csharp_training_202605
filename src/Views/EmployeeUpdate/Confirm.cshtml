@@ -1,0 +1,90 @@
+@using src.Presentations.ViewModels
+@model EmployeeUpdateViewModel;
+@{
+    ViewData["Title"] = "社員更新(確認)";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-8">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>変更前</td>
+                        <td>変更後</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Name)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeName)</td>
+                        <td>@Html.DisplayFor(m => m.Name)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.DeptName)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeDeptName)</td>
+                        <td>@Html.DisplayFor(m => m.DeptName)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Birthday)</td>
+                        <td>@Model.BeforeBirthday.ToString("yyyy/MM/dd")</td>
+                        <td>@Model.Birthday.ToString("yyyy/MM/dd")</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Gender)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeGender)</td>
+                        <td>@Html.DisplayFor(m => m.Gender)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.PhoneNumber)</td>
+                        <td>@Html.DisplayFor(m => m.BeforePhoneNumber)</td>
+                        <td>@Html.DisplayFor(m => m.PhoneNumber)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Email)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeEmail)</td>
+                        <td>@Html.DisplayFor(m => m.Email)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Address)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeAddress)</td>
+                        <td>@Html.DisplayFor(m => m.Address)</td>
+                    </tr>
+                </tbody>
+            </table>    
+
+            <form>
+                @*POSTリクエスト(Update/Back)に値を渡すためにhidden属性を使う*@
+                @*これがないと、次の画面で値が消えてしまう*@
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Name" />
+                <input type="hidden" asp-for="DeptId" />
+                <input type="hidden" asp-for="DeptName" />
+                <input type="hidden" asp-for="Birthday" />
+                <input type="hidden" asp-for="Gender" />
+                <input type="hidden" asp-for="PhoneNumber" />
+                <input type="hidden" asp-for="Email" />
+                <input type="hidden" asp-for="Address" />
+                <input type="hidden" asp-for="BeforeName" />
+                <input type="hidden" asp-for="BeforeDeptId" />
+                <input type="hidden" asp-for="BeforeDeptName" />
+                <input type="hidden" asp-for="BeforeBirthday" />
+                <input type="hidden" asp-for="BeforeGender" />
+                <input type="hidden" asp-for="BeforePhoneNumber" />
+                <input type="hidden" asp-for="BeforeEmail" />
+                <input type="hidden" asp-for="BeforeAddress" />
+                @*formaction/formmethod ボタンごとに送信先を変える*@
+                @*同じフォーム内で[登録]と[戻る]を分岐できる*@
+                <div class="text-center mt-4">
+                    <button type="submit"
+                        formaction="@Url.Action("Update", "EmployeeUpdate")"
+                        formmethod="post"
+                        class="btn btn-primary">更新</button>
+                    <button type="submit"
+                        formaction="@Url.Action("Back", "EmployeeUpdate")"
+                        formmethod="post"
+                        class="btn btn-secondary">戻る</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

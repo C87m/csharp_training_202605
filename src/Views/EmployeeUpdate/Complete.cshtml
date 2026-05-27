@@ -1,0 +1,68 @@
+@using src.Presentations.ViewModels
+@model EmployeeUpdateViewModel;
+@{
+        ViewData["Title"] = "部署更新(完了)";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-8 text-center">
+            <div class="alert alert-success" role="alert">
+                社員情報の更新が完了しました。
+            </div>
+            <table class="table table-hover">
+                <tbody>
+                    @*更新した部署を表示する*@
+                    <tr>
+                        <td></td>
+                        <td>変更前</td>
+                        <td>変更後</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Name)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeName)</td>
+                        <td>@Html.DisplayFor(m => m.Name)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.DeptName)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeDeptName)</td>
+                        <td>@Html.DisplayFor(m => m.DeptName)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Birthday)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeBirthday)</td>
+                        <td>@Html.DisplayFor(m => m.Birthday)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Gender)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeGender)</td>
+                        <td>@Html.DisplayFor(m => m.Gender)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.PhoneNumber)</td>
+                        <td>@Html.DisplayFor(m => m.BeforePhoneNumber)</td>
+                        <td>@Html.DisplayFor(m => m.PhoneNumber)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Email)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeEmail)</td>
+                        <td>@Html.DisplayFor(m => m.Email)</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Address)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeAddress)</td>
+                        <td>@Html.DisplayFor(m => m.Address)</td>
+                    </tr>
+                </tbody>
+            </table>
+            @*入力画面に戻る*@
+            <a asp-action="Enter" asp-controller="EmployeeUpdate" class="btn btn-primary mt-3">
+                続けて更新する
+            </a>
+            @*メニューに戻る*@
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+                メニューに戻る
+            </a>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,11 @@ public interface IEmployeeRepository
     /// </summary>
     /// <returns>社員のリスト</returns>
     List<int?> FindAllDept();
+    /// <summary>
+    /// Idから部署Idを取得する
+    /// </summary>
+    /// <returns>社員のリスト</returns>
+    int FindDeptIdById(int id);
 
     /// <summary>
     /// 指定された部署Idの部署の人数取得する
