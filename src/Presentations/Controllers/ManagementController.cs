@@ -5,7 +5,7 @@ using src.Presentations.Controllers;
 using Microsoft.AspNetCore.Authorization;
 
 namespace src.Controllers;
-
+[Authorize]
 public class ManagementController : Controller
 {
     private readonly ILogger<ManagementController> _logger;
