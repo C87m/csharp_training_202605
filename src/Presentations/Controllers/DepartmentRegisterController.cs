@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using src.Applications.Services;
 using src.Presentations.ViewModels;
 using src.Presentations.Adapters;
+using Microsoft.AspNetCore.Authorization;
 namespace src.Presentations.Controllers;
 /// <summary>
 /// 従業員登録コントローラ
 /// </summary>
 [Route("DepartmentRegister")]
+[Authorize]
 public class DepartmentRegisterController : Controller
 {
     /// <summary>

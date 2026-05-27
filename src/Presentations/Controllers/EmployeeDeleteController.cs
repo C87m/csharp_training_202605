@@ -3,11 +3,13 @@ using src.Applications.Services;
 using src.Presentations.ViewModels;
 using src.Presentations.Adapters;
 using src.Applications.Domains;
+using Microsoft.AspNetCore.Authorization;
 namespace src.Presentations.Controllers;
 /// <summary>
 /// 従業員削除コントローラ
 /// </summary>
 [Route("EmployeeDelete")]
+[Authorize]
 public class EmployeeDeleteController : Controller
 {
     /// <summary>

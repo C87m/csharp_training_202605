@@ -3,11 +3,13 @@ using src.Applications.Services;
 using src.Presentations.ViewModels;
 using src.Presentations.Adapters;
 using src.Applications.Domains;
+using Microsoft.AspNetCore.Authorization;
 namespace src.Presentations.Controllers;
 /// <summary>
 /// 従業員更新コントローラ
 /// </summary>
 [Route("DepartmentUpdate")]
+[Authorize]
 public class DepartmentUpdateController : Controller
 {
     /// <summary>
