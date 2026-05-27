@@ -11,7 +11,7 @@ public class EmployeeRegisterViewModel
     /// 氏名
     /// </summary>
     [Display(Name = "氏名")]
-    [Required(ErrorMessage = "{0}は入力必須です。")]
+    [Required(ErrorMessage = "{0}は1文字以上10文字以内で入力してください。")]
     [StringLength(10, ErrorMessage = "{0}は1文字以上10文字以内で入力してください。")]
     public string? Name { get; set; } = string.Empty;
     /// <summary>
@@ -19,8 +19,8 @@ public class EmployeeRegisterViewModel
     /// </summary>
     [Display(Name = "生年月日")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
-    [Range(typeof(DateOnly), "1900/01/01", "2026/05/29", ErrorMessage = "未来の日付は設定できません。")]
-    public DateOnly Birthday { get; set; }
+    [Range(typeof(DateOnly), "1/1/1900", "5/29/2026", ErrorMessage = "未来の日付は設定できません。")]
+    public DateOnly Birthday { get; set; } = DateOnly.Parse("2003/01/01");
     /// <summary>
     /// 所属部署
     /// </summary>
@@ -44,23 +44,26 @@ public class EmployeeRegisterViewModel
     /// 電話番号
     /// </summary>
     [Display(Name = "電話番号")]
-    [Required(ErrorMessage = "{0}は入力必須です。")]
-    [Phone(ErrorMessage = "電話番号の形式が正しくありません")]
+    [Required(ErrorMessage = "{0}は必須です。")]
+    [Phone(ErrorMessage = "電話番号が不正です")]
+    [StringLength(12, ErrorMessage = "{0}が不正です")]
     public string? PhoneNumber { get; set; } = string.Empty;
 
     /// <summary>
     /// メールアドレス
     /// </summary>
     [Display(Name = "メールアドレス")]
-    [Required(ErrorMessage = "{0}は入力必須です。")]
-    [EmailAddress(ErrorMessage = "メールアドレスの形式が正しくありません")]
+    [Required(ErrorMessage = "{0}は必須です。")]
+    [EmailAddress(ErrorMessage = "{0}が不正です")]
+    [StringLength(100, ErrorMessage = "{0}が不正です")]
     public string? Email { get; set; } = string.Empty;
 
     /// <summary>
     /// 住所
     /// </summary>
     [Display(Name = "住所")]
-    [Required(ErrorMessage = "{0}は入力必須です。")]
+    [Required(ErrorMessage = "{0}は必須です。")]
+    [StringLength(100, ErrorMessage = "{0}が不正です")]
     public string? Address { get; set; } = string.Empty;
 
     /// <summary>
