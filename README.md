@@ -157,6 +157,7 @@ Web開発演習
 ```sql
 drop table employee;
 drop table department;
+drop table login;
 
 -- ============================
 -- 部門 department
@@ -189,18 +190,30 @@ CREATE TABLE employee
   phone_number varchar(20) NOT NULL,
   email varchar(100) NOT NULL,
   address varchar(100) NOT NULL,
-　delete_flag boolean NOT NULL DEFAULT FALSE,
+  delete_flag boolean NOT NULL DEFAULT FALSE,
   CONSTRAINT pk_emp_no PRIMARY KEY (emp_id),
   CONSTRAINT fk_dept_no FOREIGN KEY (dept_id)
       REFERENCES department(dept_id)
 );
 
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('田中太郎',2,'2001-08-08',0,'11122223333','taro@sample.com','東京都');
-INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('鈴木三郎',1,'1984-08-08',0,'11122323333','sab@sample.com','神奈川県');
+INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('鈴木三郎',6,'1984-08-08',0,'11122323333','sab@sample.com','神奈川県');
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('佐藤花子',4,'2012-08-08',1,'11124223333','hana5@sample.com','北海道');
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('中田彩子',5,'2011-08-08',1,'11125223333','aya@sample.com','アメリカ合衆国');
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('加藤圭太',3,'2004-08-08',0,'11126223333','keita@sample.com','中華人民共和国');
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('松本良太',4,'2003-08-08',0,'11127223333','ryota@sample.com','大韓民国');
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('山下孝輔',5,'1991-08-08',2,'11127223333','kosuke@sample.com','沖縄県');
 INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, address) VALUES ('渡辺大輔',4,'2000-08-08',2,'11128223333','daisuke@sample.com','東京都');
+
+-- ============================
+-- ユーザー login
+-- ============================
+CREATE TABLE login
+(
+  login_id   varchar(10) NOT NULL,
+  login_password varchar(10) NOT NULL,
+  CONSTRAINT pk_login_id PRIMARY KEY (login_id)
+);
+INSERT INTO login (login_id, login_password) VALUES ('user','password');
+INSERT INTO login (login_id, login_password) VALUES ('fullness','fullness');
 ```

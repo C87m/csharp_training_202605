@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using src.Models;
 using src.Presentations.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace src.Controllers;
 
@@ -14,6 +15,7 @@ public class ManagementController : Controller
         _logger = logger;
     }
 
+    [Authorize]
     public IActionResult Enter()
     {
         return View();

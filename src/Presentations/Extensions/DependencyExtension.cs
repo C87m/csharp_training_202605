@@ -57,10 +57,12 @@ public static class DependencyExtension
         services.AddScoped<DepartmentEntityAdapter>();
         // ドメインモデル:従業員と従業員エンティティの相互変換インターフェイスの実装
         services.AddScoped<EmployeeEntityAdapter>();
+        services.AddScoped<LoginEntityAdapter>();
         // ドメインオブジェクト:部署のCRUD操作インターフェイス実装
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
         // ドメインオブジェクト:従業員のCRUD操作インターフェイスの実装
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        services.AddScoped<ILoginRepository, LoginRepository>();
     }
 
     /// <summary>
@@ -85,6 +87,7 @@ public static class DependencyExtension
         services.AddScoped<IDepartmentUpdateService, DepartmentUpdateService>();
         // 部署削除サービスインターフェイスの実装
         services.AddScoped<IDepartmentDeleteService, DepartmentDeleteService>();
+        services.AddScoped<IUserLoginService, UserLoginService>();
     }
 
     /// <summary>
@@ -109,6 +112,7 @@ public static class DependencyExtension
         services.AddScoped<DepartmentUpdateViewModelAdapter>();
         // 部署削除ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
         services.AddScoped<DepartmentDeleteViewModelAdapter>();
+        services.AddScoped<UserLoginViewModelAdapter>();
         // TempDataへのEmployeeRegisterViewの保存・復元するためのクラス
         // コンストラクタを利用して明示的にDIコンテナにインスタンスを登録する
         services.AddScoped(

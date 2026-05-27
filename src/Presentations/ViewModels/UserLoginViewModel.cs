@@ -34,6 +34,12 @@ public class UserLoginViewModel
         Password = "password";
     }
 
+    public UserLoginViewModel(Login user)
+    {
+        Id = user.Id;
+        Password = user.Password;
+    }
+
     public override string ToString()
     {
         return $"Id={Id}, Password={Password}";

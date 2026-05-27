@@ -15,6 +15,10 @@ public class AppDbContext : DbContext
     /// </summary> 
     public DbSet<DepartmentEntity> Departments { get; set; } = null!;
     /// <summary>
+    /// loginテーブルにアクセスするプロパティ
+    /// </summary> 
+    public DbSet<LoginEntity> Login { get; set; } = null!;
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="options">
