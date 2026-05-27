@@ -3,6 +3,8 @@ using src.Applications.Domains;
 using src.Applications.Repositories;
 using src.Infrastructures.Adapters;
 using src.Exceptions;
+using Microsoft.EntityFrameworkCore;
+
 namespace src.Infrastructures.Repositories;
 /// <summary>
 /// ドメインオブジェクト:部署のCRUD操作インターフェイス実装
@@ -121,10 +123,15 @@ public class DepartmentRepository : IDepartmentRepository
     /// <param name="department">削除対象の部署</param>
     public void Delete(Department department)
     {
+        var existingEntity = _context.Departments.AsNoTracking().FirstOrDefault(d => d.DeptId == department.Id);
+        if(existingEntity == null)
+        {
+            throw new InternalException($"部署が見つかりません。");
+        }
+
         try
         {
-            var entity = _adapter.Convert(department);
-            _context.Departments.Remove(entity);
+            _context.Departments.Remove(existingEntity);
             _context.SaveChanges();
         }
         catch (Exception e)
