@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<form>
+    <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" asp-area="" asp-controller="EmployeeRegister" asp-action="Enter">社員一覧</button>
+            <button class="btn btn-primary" asp-area="" asp-controller="EmployeeShow" asp-action="Show">社員一覧</button>
+    </div>
+    <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" asp-area="" asp-controller="EmployeeUpdate" asp-action="Enter">社員更新</button>
+            <button class="btn btn-primary" asp-area="" asp-controller="EmployeeDelete" asp-action="Enter">社員削除</button>
+    </div>
+    <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" asp-area="" asp-controller="DepartmentRegister" asp-action="Enter">部署登録</button>
+            <button class="btn btn-primary" asp-area="" asp-controller="DepartmentShow" asp-action="Show">部署一覧</button>
+    </div>
+    <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" asp-area="" asp-controller="DepartmentUpdate" asp-action="Enter">部署更新</button>
+            <button class="btn btn-primary" asp-area="" asp-controller="DepartmentDelete" asp-action="Enter">部署削除</button>
+    </div>
+</form>

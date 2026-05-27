@@ -14,8 +14,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie("CookieAuthentication", options => // "CookieAuthentication" という名前でクッキー認証を設定
 {
-    options.LoginPath = "/Account/Login"; // 未認証時にリダイレクトされるログインページのパス
-    options.AccessDeniedPath = "/Account/AccessDenied"; // 権限がない場合にリダイレクトされるパス
+    options.LoginPath = "/UserLogin/Login"; // 未認証時にリダイレクトされるログインページのパス
+    options.AccessDeniedPath = "/UserLogin/AccessDenied"; // 権限がない場合にリダイレクトされるパス
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // クッキーの有効期限
     options.SlidingExpiration = true; // 有効期限をスライドさせる（アクセスがあるたびに延長）
 });

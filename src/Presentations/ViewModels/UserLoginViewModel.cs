@@ -14,12 +14,14 @@ public class UserLoginViewModel
     /// 選択された部署名
     /// </summary>
     [Display(Name = "ログインID")]
+    [Required(ErrorMessage = "入力してください")]
     public string? Id { get; set; }
 
     /// <summary>
     /// 選択された部署名
     /// </summary>
     [Display(Name = "パスワード")]
+    [Required(ErrorMessage = "入力してください")]
     public string? Password { get; set; }
 
 
