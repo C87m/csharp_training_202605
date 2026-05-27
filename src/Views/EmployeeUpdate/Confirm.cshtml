@@ -26,13 +26,13 @@
                     </tr>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.Birthday)</td>
-                        <td>@Model.BeforeBirthday.ToString("yyyy/MM/dd")</td>
-                        <td>@Model.Birthday.ToString("yyyy/MM/dd")</td>
+                        <td>@Model.BeforeBirthday.ToString("yyyy年MM月dd日")</td>
+                        <td>@Model.Birthday.ToString("yyyy年MM月dd日")</td>
                     </tr>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.Gender)</td>
-                        <td>@Html.DisplayFor(m => m.BeforeGender)</td>
-                        <td>@Html.DisplayFor(m => m.Gender)</td>
+                        <td>@Model.GenderList.FirstOrDefault(x => x.Value == Model.BeforeGender.ToString())?.Text</td>
+                        <td>@Model.GenderList.FirstOrDefault(x => x.Value == Model.Gender.ToString())?.Text</td>
                     </tr>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.PhoneNumber)</td>

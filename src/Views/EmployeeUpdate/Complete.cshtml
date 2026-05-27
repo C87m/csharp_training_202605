@@ -1,7 +1,7 @@
 @using src.Presentations.ViewModels
 @model EmployeeUpdateViewModel;
 @{
-        ViewData["Title"] = "部署更新(完了)";
+        ViewData["Title"] = "社員更新(完了)";
 }
 <h2 class="text-center mt-4">@ViewData["Title"]</h2>
 <div class="container mt-5">
@@ -30,8 +30,8 @@
                     </tr>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.Birthday)</td>
-                        <td>@Html.DisplayFor(m => m.BeforeBirthday)</td>
-                        <td>@Html.DisplayFor(m => m.Birthday)</td>
+                        <td>@Model.BeforeBirthday.ToString("yyyy年MM月dd日"))</td>
+                        <td>@Model.Birthday.ToString("yyyy年MM月dd日")</td>
                     </tr>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.Gender)</td>
