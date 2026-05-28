@@ -15,6 +15,8 @@
                     @*削除した部署を表示する*@
                     <tr>
                         <td class="fw-bold">削除した部署</td>
+                    </tr>
+                    <tr>
                         <td>@Html.DisplayFor(m => m.Name)</td>
                     </tr>
                 </tbody>
@@ -24,7 +26,7 @@
                 続けて削除する
             </a>
             @*メニューに戻る*@
-            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+            <a asp-action="Enter" asp-controller="Management" class="btn btn-secondary mt-3 ms-2">
                 メニューに戻る
             </a>
         </div>

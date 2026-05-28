@@ -11,8 +11,8 @@
     <div class="row justify-content-center">
         <div class="col-md-4 col-sm-6"> 
             <!-- 表形式で一覧を表示 -->
-            <table class="table table-bordered"> <!-- Bootstrapのスタイルを適用した表 -->
-                <thead> <!-- 表のヘッダー -->
+            <table class="table table-bordered table-striped"> <!-- Bootstrapのスタイルを適用した表 -->
+                <thead class="table-dark"> <!-- 表のヘッダー -->
                     <tr> <!-- ヘッダー行 -->
                         <th>部署名</th> <!-- 部署列のヘッダー -->
                     </tr>
@@ -28,7 +28,7 @@
             </table>
             <div class="text-center">
             @*メニューに戻る*@
-            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+            <a asp-action="Enter" asp-controller="Management" class="btn btn-secondary mt-3 ms-2">
                 メニューに戻る
             </a>
             </div>

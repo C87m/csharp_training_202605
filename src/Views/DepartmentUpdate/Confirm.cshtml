@@ -11,12 +11,11 @@
                 <tbody>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.BeforeName)</td>
-                        <td>@Html.DisplayFor(m => m.BeforeName)</td>
+                        <td class="fw-bold">変更後の部署名</td>
                     </tr>
                     <tr>
-                        @*DepartmentUpdateViewModelのNameプロパティの値を表示する*@
-                        <td class="fw-bold">変更後の部署名</td>
                         <td>@Html.DisplayFor(m => m.Name)</td>
+                        <td>@Html.DisplayFor(m => m.BeforeName)</td>
                     </tr>
                 </tbody>
             </table>    

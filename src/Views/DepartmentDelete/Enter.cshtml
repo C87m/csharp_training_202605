@@ -12,12 +12,12 @@
         <div class="col-md-4 col-sm-6"> 
             <form asp-controller="DepartmentDelete" asp-action="Confirm" method="post">
                 @*部署一覧をプルダウンで表示*@
-                <select asp-for="Id" asp-items="Model.Departments" class="form-control"></select>
+                <select asp-for="Id" asp-items="Model.Departments" class="form-select"></select>
                 </select> 
                 @* [選択]ボタン *@
                 <br/>
                 <div class="d-flex justify-content-center">
-                    <button type="submit">選択</button>
+                    <button type="submit" class="btn btn-primary">選択</button>
                 </div>
             </form>
         </div>
