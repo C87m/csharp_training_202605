@@ -61,7 +61,7 @@ public class UserLoginController : Controller
 
             // **3. 定義されたクレームから ClaimsIdentity を構築**
             //    ユーザーがどのように認証されたか（認証スキーム）を示す
-            var claimsIdentity = new ClaimsIdentity(claims, "CookieAuthentication");
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             // **4. ClaimsIdentity から ClaimsPrincipal オブジェクトを構築**
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -73,12 +73,24 @@ public class UserLoginController : Controller
                 claimsPrincipal,
                 new AuthenticationProperties
                 {
-                    IsPersistent = true, // true にするとセッションを超えてログイン状態が保持される
+                    IsPersistent = false, // true にするとセッションを超えてログイン状態が保持される
                 });
 
             return RedirectToAction("Enter", "Management");
         }
         ModelState.AddModelError("Id", "IDかパスワードが間違っています。");
         return View();
+    }
+
+    /// <summary>
+    /// ログアウト画面表示メソッド
+    /// </summary>
+    /// <returns></returns>
+    //[HttpPost("Logout")]
+    public async Task<IActionResult> Logout(UserLoginViewModel viewModel)
+    {
+        await HttpContext.SignOutAsync("CookieAuthentication");
+        Console.WriteLine("ログアウト成功");
+        return RedirectToAction("Index", "Home");
     }
 }

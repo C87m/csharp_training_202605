@@ -85,6 +85,13 @@ public class EmployeeRegisterController : Controller
             // 入力画面の表示
             return View("Enter", viewModel);
         }
+        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+        if(viewModel.Birthday > today)
+        {
+            ModelState.AddModelError("Birthday", "未来の日付は指定できません。");
+            PopulateDepartments(viewModel);
+            return View("Enter", viewModel);
+        }
         // 選択された部署のIdで部署データを取得する
         var department = _employeeRegisterService.GetById(viewModel.DeptId ?? 0);
         _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");

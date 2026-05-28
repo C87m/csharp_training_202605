@@ -31,7 +31,7 @@ public class EmployeeUpdateViewModel
     /// </summary>
     [Display(Name = "生年月日")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
-    [Range(typeof(DateOnly), "1900/01/01", "2026/05/29", ErrorMessage = "未来の日付は設定できません。")]
+    [Range(typeof(DateOnly), "1/1/1900", "01/01/2100", ErrorMessage = "生年月日が不正です。")]
     public DateOnly Birthday { get; set; }
     /// <summary>
     /// 生年月日

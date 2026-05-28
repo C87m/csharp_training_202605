@@ -15,8 +15,8 @@
                     @*更新した部署を表示する*@
                     <tr>
                         <td></td>
-                        <td>変更前</td>
-                        <td>変更後</td>
+                        <td class="fw-bold">変更前</td>
+                        <td class="fw-bold">変更後</td>
                     </tr>
                     <tr>
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.Name)</td>
@@ -60,7 +60,7 @@
                 続けて更新する
             </a>
             @*メニューに戻る*@
-            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+            <a asp-action="Enter" asp-controller="Management" class="btn btn-secondary mt-3 ms-2">
                 メニューに戻る
             </a>
         </div>

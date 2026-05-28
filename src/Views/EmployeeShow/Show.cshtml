@@ -9,10 +9,10 @@
 
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-12 col-sm-12"> 
+        <div class="col-md-12 col-sm-12 table-responsive"> 
             <!-- 表形式で一覧を表示 -->
-            <table class="table table-bordered"> <!-- Bootstrapのスタイルを適用した表 -->
-                <thead> <!-- 表のヘッダー -->
+            <table class="table table-bordered table-striped"> <!-- Bootstrapのスタイルを適用した表 -->
+                <thead class="table-light"> <!-- 表のヘッダー -->
                     <tr> <!-- ヘッダー行 -->
                         <th>名前</th> <!-- 部署列のヘッダー -->
                         <th>部署</th> <!-- 部署列のヘッダー -->
@@ -23,7 +23,7 @@
                         <th>住所</th> <!-- 部署列のヘッダー -->
                     </tr>
                 </thead>
-                <tbody> <!-- 表の本体 -->
+                <tbody class="table-group-divider"> <!-- 表の本体 -->
                     @foreach (var Employee in Model) // 受け取ったリストを1件ずつ処理
                     {
                         <tr> <!-- データ行 -->
@@ -40,7 +40,7 @@
             </table>
             <div class="text-center">
             @*メニューに戻る*@
-            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+            <a asp-action="Enter" asp-controller="Management" class="btn btn-secondary mt-3 ms-2">
                 メニューに戻る
             </a>
             </div>

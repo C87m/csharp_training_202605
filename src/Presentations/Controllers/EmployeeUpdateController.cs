@@ -106,6 +106,13 @@ public class EmployeeUpdateController : Controller
             // 入力画面の表示
             return View("Edit", viewModel);
         }
+        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+        if(viewModel.Birthday > today)
+        {
+            ModelState.AddModelError("Birthday", "未来の日付は指定できません。");
+            PopulateDepartments(viewModel);
+            return View("Edit", viewModel);
+        }
         // 確認画面を表示する
         return View(viewModel);
     }

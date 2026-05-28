@@ -1,8 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using src.Models;
-using src.Presentations.Controllers;
-
 namespace src.Controllers;
 
 public class HomeController : Controller
