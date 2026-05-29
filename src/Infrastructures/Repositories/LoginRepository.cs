@@ -49,4 +49,23 @@ public class LoginRepository : ILoginRepository
         }
     }
 
+    /// <summary>
+    /// ユーザーを永続化
+    /// </summary>
+    /// <param name="department">永続化対象の部署</param>
+    public void Create(Login user)
+    {
+        try
+        {
+            var entity = _adapter.Convert(user);
+            _context.Login.Add(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "ユーザーの永続化ができませんでした。", e);
+        }
+    }
+
 }

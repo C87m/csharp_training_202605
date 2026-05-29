@@ -11,4 +11,10 @@ public interface ILoginRepository
     /// <param name="id">部署Id</param>
     /// <returns>取得して部署</returns>
     Login? FindById(string id);
+
+    /// <summary>
+    /// ユーザーを永続化する
+    /// </summary>
+    /// <param name="employee">永続化対象の従業員</param>
+    void Create(Login user);
 }

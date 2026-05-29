@@ -1,0 +1,30 @@
+@* クラスの名前空間を指定する(C#と同じ) *@
+@using src.Presentations.ViewModels
+@* View が受け取るデータ型（ViewModel）を宣言asp-for はこの型のプロパティと結びつける *@
+@model UserRegisterViewModel;
+@{
+    ViewData["Title"] = "ログインIDとパスワードを入力してください";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6">
+            <form method="post" asp-controller="UserRegister" asp-action="Confirm">
+            <div class="form-group">
+                <label asp-for="Id">ログインID</label>
+                <input asp-for="Id" class="form-control">
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">パスワード</label>
+                <input asp-for="Password" class="form-control" type="password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">完了</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

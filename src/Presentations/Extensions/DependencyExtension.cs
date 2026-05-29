@@ -88,6 +88,7 @@ public static class DependencyExtension
         // 部署削除サービスインターフェイスの実装
         services.AddScoped<IDepartmentDeleteService, DepartmentDeleteService>();
         services.AddScoped<IUserLoginService, UserLoginService>();
+        services.AddScoped<IUserRegisterService, UserRegisterService>();
     }
 
     /// <summary>
@@ -113,6 +114,7 @@ public static class DependencyExtension
         // 部署削除ViewModelをドメインオブジェクト:従業員に変換するアダプターインターフェイスの実装
         services.AddScoped<DepartmentDeleteViewModelAdapter>();
         services.AddScoped<UserLoginViewModelAdapter>();
+        services.AddScoped<UserRegisterViewModelAdapter>();
         // TempDataへのEmployeeRegisterViewの保存・復元するためのクラス
         // コンストラクタを利用して明示的にDIコンテナにインスタンスを登録する
         services.AddScoped(
@@ -138,6 +140,10 @@ public static class DependencyExtension
         services.AddScoped(
             provider =>
             new TempDataStore<DepartmentDeleteViewModel>("EmployeeRegisterViewModel")
+        );
+        services.AddScoped(
+            provider =>
+            new TempDataStore<UserRegisterViewModel>("EmployeeRegisterViewModel")
         );
     }
 }
