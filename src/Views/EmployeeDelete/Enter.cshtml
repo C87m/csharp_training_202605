@@ -13,7 +13,7 @@
         <div class="col-md-4 col-sm-6"> 
             <form asp-controller="EmployeeDelete" asp-action="Confirm" method="post">
                 @*部署一覧をプルダウンで表示*@
-                <select asp-for="Id" asp-items="Model.Employees" class="form-control"></select>
+                <select asp-for="Id" asp-items="Model.Employees" class="form-select"></select>
                 </select> 
                 @* [選択]ボタン *@
                 <br/>
