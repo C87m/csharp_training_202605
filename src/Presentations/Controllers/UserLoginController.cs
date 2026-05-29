@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 namespace src.Presentations.Controllers;
 
 [Route("UserLogin")]
@@ -51,7 +52,9 @@ public class UserLoginController : Controller
             ModelState.AddModelError("Id", "IDかパスワードが間違っています。");
             return View();
         }
-        if (viewModel.Password == user.Password)
+        var passwordHasher = new PasswordHasher<string>();
+        var result = passwordHasher.VerifyHashedPassword(viewModel.Id!, user!.Password!, viewModel.Password!);
+        if (result == PasswordVerificationResult.Success)
         {
             // **2. ユーザーの身元が確認された後、そのユーザーに関するクレームを定義**
             var claims = new List<Claim>

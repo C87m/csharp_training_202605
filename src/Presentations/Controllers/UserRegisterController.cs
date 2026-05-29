@@ -3,12 +3,8 @@ using src.Applications.Services;
 using src.Presentations.ViewModels;
 using src.Presentations.Adapters;
 using src.Applications.Domains;
-using src.Controllers;
-using System.Diagnostics;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 namespace src.Presentations.Controllers;
+using Microsoft.AspNetCore.Identity;
 
 [Route("UserLogin")]
 public class UserRegisterController : Controller
@@ -114,6 +110,10 @@ public class UserRegisterController : Controller
             // データが存在しない場合、入力画面にリダイレクト
             return RedirectToAction("Enter");
         }
+        // パスワードのハッシュ化
+        var passwordHasher = new PasswordHasher<string>();
+        string HashPassword = passwordHasher.HashPassword(viewModel.Id!, viewModel.Password!);
+        viewModel.Password = HashPassword;
         // DepartmentRegisterFormをドメインモデル:Departmentに変換する
         var user = _adapter.Restore(viewModel!);
         // 新しい従業員を登録する

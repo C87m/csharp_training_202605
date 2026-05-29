@@ -219,9 +219,9 @@ INSERT INTO employee (emp_name, dept_id, birthday, gender, phone_number, email, 
 CREATE TABLE login
 (
   login_id   varchar(10) NOT NULL,
-  login_password varchar(10) NOT NULL,
+  login_password varchar NOT NULL,
   CONSTRAINT pk_login_id PRIMARY KEY (login_id)
 );
-INSERT INTO login (login_id, login_password) VALUES ('user','password');
-INSERT INTO login (login_id, login_password) VALUES ('fullness','fullness');
+INSERT INTO login (login_id, login_password) VALUES ('user','AQAAAAIAAYagAAAAEKRXXs4RkbH1xNxMwthPLDWkFTBosigCenxEYpOuSNU3gHnMrG+08eUQ8iKqJsCnzg==');--password
+INSERT INTO login (login_id, login_password) VALUES ('fullness','AQAAAAIAAYagAAAAEI5C/Kp62jMEvvBKYvXaPJufLnviB10hmhYdu0kxIhQG35FU1a1apMEkQ8CZqLCUuA==');--fullness
 ```
